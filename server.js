@@ -21,11 +21,11 @@ class Block {
 const fetchData = async () => {
   try {
     const listOfBlocks = []; // create an empty array to store the blocks
-    for (let blockNumber = 1746953; blockNumber < 1746958; blockNumber++) {
+    for (let blockNumber = 1746953; blockNumber < 1747953; blockNumber++) {
       // loop through the blocks
       const apiUrl = `https://api.etherscan.io/api?module=block&action=getblockreward&blockno=${blockNumber}&apikey=${process.env.API_KEY}`; // create the api url
-
       const response = await axios.get(apiUrl); // make the api call
+      console.log("got resopnse for block number: ", blockNumber);
       const blockRewards = utils.formatEther(response.data.result.blockReward); // get the block rewards
       const timeStamp = response.data.result.timeStamp; // get the timestamp
       const block = new Block(timeStamp, blockRewards); // create a new block
